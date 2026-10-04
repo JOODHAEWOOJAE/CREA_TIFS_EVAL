@@ -35,7 +35,7 @@
 
                 <li class="nav-item">
 
-                    <a class="ct-btn ct-btn--primary ct-btn--sm" href="#">
+                    <a class="ct-btn ct-btn--primary ct-btn--sm" href="projects/add/form.html">
 
                         <svg
                             class="ct-scissors"

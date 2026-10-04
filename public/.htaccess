@@ -14,6 +14,16 @@ RewriteRule ^ - [L]
 # URL: ?projects=index
 RewriteRule ^projects$ ?projects=index [L]
 
+# ROUTE PROJECTS.ADDFORM
+# PATTERN: /projects/add/form.html
+# URL: ?projects=add-form
+RewriteRule ^projects\/add\/form\.html$ ?projects=add-form [L]
+
+# ROUTE PROJECTS.INSERT
+# PATTERN: /projects/add/insert.html
+# URL: ?projects=insert
+RewriteRule ^projects\/add\/insert\.html$ ?projects=insert [L]
+
 # ROUTE PROJECTS.SHOW
 # PATTERN: /projects/id/slug.html
 # URL: ?projects=show&id=x
@@ -22,3 +32,4 @@ RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])?\.html$ ?pro
 # --------------------------------------------
 # FALLBACK
 RewriteRule ^ index.php [L]
+

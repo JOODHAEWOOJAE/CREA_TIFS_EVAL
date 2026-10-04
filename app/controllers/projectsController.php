@@ -42,3 +42,40 @@ function showAction(PDO $connexion, int $id)
 
     $content = ob_get_clean();
 }
+
+// Afficher le formulaire d'ajout d'un projet
+function addFormAction(PDO $connexion)
+{
+    global $content, $title, $showHero;
+
+    $title = "Ajouter un projet";
+    $showHero = false;
+
+    ob_start();
+
+    include '../app/views/projects/addForm.php';
+
+    $content = ob_get_clean();
+}
+
+// Ajouter un projet dans la base de données
+function insertAction(PDO $connexion, array $projectData, array $imageData)
+{
+    include_once '../app/models/projectsModel.php';
+
+    $imageName = $imageData['name'];
+
+    // Enregistrer l'image dans le dossier images
+    if ($imageName != ''):
+        move_uploaded_file(
+            $imageData['tmp_name'],
+            '../public/images/' . $imageName
+        );
+    endif;
+
+    $projectData['image'] = $imageName;
+
+    ProjectsModel\insertOne($connexion, $projectData);
+
+    header('location: ' . PUBLIC_BASE_URL);
+}

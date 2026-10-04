@@ -40,3 +40,22 @@ function findOneById(PDO $connexion, int $id): array
 
     return $rs->fetch(PDO::FETCH_ASSOC);
 }
+
+// Ajouter un projet
+function insertOne(PDO $connexion, array $projectData): bool
+{
+    $sql = "INSERT INTO projets
+            (titre, resume, texte, dateCreation, image, creatif)
+            VALUES
+            (:titre, :resume, :texte, NOW(), :image, :creatif);";
+
+    $rs = $connexion->prepare($sql);
+
+    $rs->bindValue(':titre', $projectData['title'], PDO::PARAM_STR);
+    $rs->bindValue(':resume', $projectData['resume'], PDO::PARAM_STR);
+    $rs->bindValue(':texte', $projectData['text'], PDO::PARAM_STR);
+    $rs->bindValue(':image', $projectData['image'], PDO::PARAM_STR);
+    $rs->bindValue(':creatif', $projectData['category_id'], PDO::PARAM_INT);
+
+    return $rs->execute();
+}
