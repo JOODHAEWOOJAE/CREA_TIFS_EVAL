@@ -62,12 +62,12 @@
                 </p>
 
 
-            <a
-                class="ct-btn ct-btn--primary ct-btn--sm"
-                href="<?php echo $url; ?>"
-            >
+                <a
+                    class="ct-btn ct-btn--primary ct-btn--sm"
+                    href="<?php echo $url; ?>"
+                >
                     Voir le projet
-            </a>
+                </a>
 
             </div>
 
@@ -76,3 +76,63 @@
     </article>
 
 <?php endforeach; ?>
+
+<!-- Pagination : 10 projets par page -->
+<nav aria-label="Navigation entre les pages de projets">
+
+    <ul
+        class="pagination ct-pagination"
+        style="justify-content: center"
+    >
+
+        <li
+            class="page-item
+            <?php if ($page <= 1): ?>
+                disabled
+            <?php endif; ?>"
+        >
+            <a
+                class="page-link"
+                href="projects?page=<?php echo $page - 1; ?>"
+            >
+                Précédent
+            </a>
+        </li>
+
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+
+            <li
+                class="page-item
+                <?php if ($i == $page): ?>
+                    active
+                <?php endif; ?>"
+            >
+                <a
+                    class="page-link"
+                    href="projects?page=<?php echo $i; ?>"
+                >
+                    <?php echo $i; ?>
+                </a>
+            </li>
+
+        <?php endfor; ?>
+
+
+        <li
+            class="page-item
+            <?php if ($page >= $totalPages): ?>
+                disabled
+            <?php endif; ?>"
+        >
+            <a
+                class="page-link"
+                href="projects?page=<?php echo $page + 1; ?>"
+            >
+                Suivant
+            </a>
+        </li>
+
+    </ul>
+
+</nav>

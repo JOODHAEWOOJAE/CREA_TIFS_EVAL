@@ -36,10 +36,10 @@ switch ($_GET['projects']):
         );
         break;
 
-        // ROUTE PROJECTS.EDITFORM
-        // PATTERN: /projects/id/slug/edit/form.html
-        // CTRL: projectsController
-        // ACTION: editForm
+    // ROUTE PROJECTS.EDITFORM
+    // PATTERN: /projects/id/slug/edit/form.html
+    // CTRL: projectsController
+    // ACTION: editForm
     case 'edit-form':
         ProjectsController\editFormAction(
             $connexion,
@@ -72,7 +72,12 @@ switch ($_GET['projects']):
         break;
 
     default:
-        ProjectsController\indexAction($connexion);
+        $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+
+        ProjectsController\indexAction(
+            $connexion,
+            $page
+        );
         break;
 
 endswitch;

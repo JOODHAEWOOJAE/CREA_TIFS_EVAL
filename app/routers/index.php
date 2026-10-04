@@ -13,5 +13,11 @@ if (isset($_GET['projects'])):
 // ACTION: index
 else:
     include_once '../app/controllers/projectsController.php';
-    \App\Controllers\ProjectsController\indexAction($connexion);
+
+    $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+
+    \App\Controllers\ProjectsController\indexAction(
+        $connexion,
+        $page
+    );
 endif;

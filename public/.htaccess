@@ -12,7 +12,7 @@ RewriteRule ^ - [L]
 # ROUTE PROJECTS.INDEX
 # PATTERN: /projects
 # URL: ?projects=index
-RewriteRule ^projects$ ?projects=index [L]
+RewriteRule ^projects$ ?projects=index [QSA,L]
 
 # ROUTE PROJECTS.ADDFORM
 # PATTERN: /projects/add/form.html

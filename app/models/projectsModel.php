@@ -4,23 +4,40 @@ namespace App\Models\ProjectsModel;
 
 use \PDO;
 
-// Récupérer les 10 derniers projets
-function findAll(PDO $connexion, int $limit = 10): array
+// Récupérer les projets avec pagination
+function findAll(PDO $connexion, int $limit = 10, int $offset = 0): array
 {
     $sql = "SELECT projets.*, creatifs.pseudo
             FROM projets
             JOIN creatifs
             ON projets.creatif = creatifs.id
             ORDER BY projets.dateCreation DESC
-            LIMIT :limit;";
+            LIMIT :limit
+            OFFSET :offset;";
 
     $rs = $connexion->prepare($sql);
 
     $rs->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $rs->bindValue(':offset', $offset, PDO::PARAM_INT);
 
     $rs->execute();
 
     return $rs->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Compter tous les projets
+function countAll(PDO $connexion): int
+{
+    $sql = "SELECT COUNT(*) AS total
+            FROM projets;";
+
+    $rs = $connexion->prepare($sql);
+
+    $rs->execute();
+
+    $result = $rs->fetch(PDO::FETCH_ASSOC);
+
+    return (int) $result['total'];
 }
 
 // Récupérer un projet par son id

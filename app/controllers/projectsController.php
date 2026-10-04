@@ -6,11 +6,29 @@ use \PDO;
 use \App\Models\ProjectsModel;
 
 // Afficher la liste des projets
-function indexAction(PDO $connexion)
+function indexAction(PDO $connexion, int $page = 1)
 {
     include_once '../app/models/projectsModel.php';
 
-    $projects = ProjectsModel\findAll($connexion);
+    $limit = 10;
+
+    if ($page < 1):
+        $page = 1;
+    endif;
+
+    $offset = ($page - 1) * $limit;
+
+    $projects = ProjectsModel\findAll(
+        $connexion,
+        $limit,
+        $offset
+    );
+
+    $totalProjects = ProjectsModel\countAll($connexion);
+
+    $totalPages = (int) ceil(
+        $totalProjects / $limit
+    );
 
     global $content, $title, $showHero;
 
