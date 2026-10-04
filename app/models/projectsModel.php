@@ -6,13 +6,17 @@ use \PDO;
 
 function findAll(PDO $connexion, int $limit = 10): array
 {
-    $sql = "SELECT *
+    $sql = "SELECT projets.*, creatifs.pseudo
             FROM projets
-            ORDER BY dateCreation DESC
+            JOIN creatifs
+            ON projets.creatif = creatifs.id
+            ORDER BY projets.dateCreation DESC
             LIMIT :limit;";
 
     $rs = $connexion->prepare($sql);
+
     $rs->bindValue(':limit', $limit, PDO::PARAM_INT);
+
     $rs->execute();
 
     return $rs->fetchAll(PDO::FETCH_ASSOC);

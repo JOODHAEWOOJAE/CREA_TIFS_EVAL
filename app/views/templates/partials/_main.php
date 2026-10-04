@@ -1,3 +1,17 @@
-<main>
-    <?php echo $content; ?>
-</main>
+<!-- Contenu -->
+<div class="container ct-content-wrap">
+
+    <div class="row">
+
+        <!-- Colonne principale -->
+        <div class="col-lg-8">
+
+            <?php echo $content; ?>
+
+        </div>
+
+        <?php include '../app/views/templates/partials/_aside.php'; ?>
+
+    </div>
+
+</div>

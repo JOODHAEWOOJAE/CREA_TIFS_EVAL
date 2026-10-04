@@ -1,19 +1,71 @@
 <?php
 
 /** @var array $projects */
+
 ?>
 
-<div class="container">
-    <h1>Les projets</h1>
+<?php foreach ($projects as $project): ?>
 
-    <?php foreach ($projects as $project): ?>
+    <article class="ct-card">
 
-        <article>
-            <h2><?php echo $project['titre']; ?></h2>
+        <div class="row">
 
-            <p><?php echo $project['resume']; ?></p>
-        </article>
+            <div class="col-md-4">
 
-    <?php endforeach; ?>
+                <a href="#">
 
-</div>
+                    <img
+                        class="img-fluid mb-3 mb-md-0"
+                        src="images/<?php echo $project['image']; ?>"
+                        alt="<?php echo $project['titre']; ?>"
+                    >
+
+                </a>
+
+            </div>
+
+
+            <div class="col-md-8">
+
+                <h3>
+
+                    <a href="#">
+                        <?php echo $project['titre']; ?>
+                    </a>
+
+                </h3>
+
+
+                <p class="ct-byline">
+
+                    par
+                    <a href="#">
+                        <?php echo $project['pseudo']; ?>
+                    </a>
+
+                    ·
+
+                    <?php echo \Core\Helpers\dateFormator($project['dateCreation']); ?>
+
+                </p>
+
+
+                <p>
+                    <?php echo $project['resume']; ?>
+                </p>
+
+
+                <a
+                    class="ct-btn ct-btn--primary ct-btn--sm"
+                    href="#"
+                >
+                    Voir le projet
+                </a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+<?php endforeach; ?>
