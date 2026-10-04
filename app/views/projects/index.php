@@ -51,7 +51,7 @@
 
 
                 <p>
-                    <?php echo $project['resume']; ?>
+                    <?php echo \Core\Helpers\truncate($project['resume'], 100); ?>
                 </p>
 
 
