@@ -57,7 +57,18 @@ switch ($_GET['projects']):
             $_GET['id'],
             $_POST,
             $_FILES['image']
-    );
+        );
+        break;
+
+    // ROUTE PROJECTS.DELETE
+    // PATTERN: /projects/delete/id/slug.html
+    // CTRL: projectsController
+    // ACTION: delete
+    case 'delete':
+        ProjectsController\deleteAction(
+            $connexion,
+            $_GET['id']
+        );
         break;
 
     default:

@@ -7,6 +7,11 @@
     \Core\Helpers\slugify($project['titre']) .
     '/edit/form.html';
 
+    $deleteUrl = 'projects/delete/' .
+    $project['id'] . '/' .
+    \Core\Helpers\slugify($project['titre']) .
+    '.html';
+
 ?>
 
 <h1><?php echo $project['titre']; ?></h1>
@@ -33,7 +38,7 @@
     </a>
 
     <a
-        href="#"
+        href="<?php echo $deleteUrl; ?>"
         class="ct-btn ct-btn--danger"
         onclick="return confirm('Supprimer définitivement ce projet ?');"
     >

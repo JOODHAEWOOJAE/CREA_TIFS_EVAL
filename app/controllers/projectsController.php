@@ -113,6 +113,16 @@ function updateAction(
     header('location: ' . PUBLIC_BASE_URL);
 }
 
+// Supprimer un projet
+function deleteAction(PDO $connexion, int $id)
+{
+    include_once '../app/models/projectsModel.php';
+
+    ProjectsModel\deleteOneById($connexion, $id);
+
+    header('location: ' . PUBLIC_BASE_URL);
+}
+
 // Afficher le formulaire de modification d'un projet
 function editFormAction(PDO $connexion, int $id)
 {

@@ -86,3 +86,25 @@ function updateOneById(
 
     return $rs->execute();
 }
+
+// Supprimer un projet
+function deleteOneById(PDO $connexion, int $id): bool
+{
+    // Supprimer les relations avec les tags
+    $sql = "DELETE FROM projets_has_tags
+            WHERE projet = :id;";
+
+    $rs = $connexion->prepare($sql);
+    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+    $rs->execute();
+
+
+    // Supprimer le projet
+    $sql = "DELETE FROM projets
+            WHERE id = :id;";
+
+    $rs = $connexion->prepare($sql);
+    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+
+    return $rs->execute();
+}

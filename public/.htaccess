@@ -27,17 +27,22 @@ RewriteRule ^projects\/add\/insert\.html$ ?projects=insert [L]
 # ROUTE PROJECTS.EDITFORM
 # PATTERN: /projects/id/slug/edit/form.html
 # URL: ?projects=edit-form&id=x
-RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])?\/edit\/form\.html$ ?projects=edit-form&id=$1 [L]
+RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9\-]+\/edit\/form\.html$ ?projects=edit-form&id=$1 [L]
 
 # ROUTE PROJECTS.UPDATE
 # PATTERN: /projects/id/slug/edit/update.html
 # URL: ?projects=update&id=x
-RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])?\/edit\/update\.html$ ?projects=update&id=$1 [L]
+RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9\-]+\/edit\/update\.html$ ?projects=update&id=$1 [L]
+
+# ROUTE PROJECTS.DELETE
+# PATTERN: /projects/delete/id/slug.html
+# URL: ?projects=delete&id=x
+RewriteRule ^projects\/delete\/([1-9][0-9]*)\/[a-z0-9\-]+\.html$ ?projects=delete&id=$1 [L]
 
 # ROUTE PROJECTS.SHOW
 # PATTERN: /projects/id/slug.html
 # URL: ?projects=show&id=x
-RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])?\.html$ ?projects=show&id=$1 [L]
+RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9\-]+\.html$ ?projects=show&id=$1 [L]
 
 # --------------------------------------------
 # FALLBACK
