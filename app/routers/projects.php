@@ -36,6 +36,29 @@ switch ($_GET['projects']):
         );
         break;
 
+        // ROUTE PROJECTS.EDITFORM
+        // PATTERN: /projects/id/slug/edit/form.html
+        // CTRL: projectsController
+        // ACTION: editForm
+    case 'edit-form':
+        ProjectsController\editFormAction(
+            $connexion,
+            $_GET['id']
+        );  
+        break;
+
+    // ROUTE PROJECTS.UPDATE
+    // PATTERN: /projects/id/slug/edit/update.html
+    // CTRL: projectsController
+    // ACTION: update
+    case 'update':
+        ProjectsController\updateAction(
+            $connexion,
+            $_GET['id'],
+            $_POST,
+            $_FILES['image']
+    );
+        break;
 
     default:
         ProjectsController\indexAction($connexion);

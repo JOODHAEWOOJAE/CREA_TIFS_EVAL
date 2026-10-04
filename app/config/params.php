@@ -3,6 +3,7 @@
 // Initialiser les zones dynamiques
 $title = "";
 $content = "Oups, il semble y avoir un problème.";
+$showHero = false;
 
 // Paramètres de connexion
 define("DB_HOST", "localhost");

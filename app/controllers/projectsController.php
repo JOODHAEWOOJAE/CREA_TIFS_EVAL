@@ -79,3 +79,55 @@ function insertAction(PDO $connexion, array $projectData, array $imageData)
 
     header('location: ' . PUBLIC_BASE_URL);
 }
+
+// Modifier un projet dans la base de données
+function updateAction(
+    PDO $connexion,
+    int $id,
+    array $projectData,
+    array $imageData
+) {
+    include_once '../app/models/projectsModel.php';
+
+    // Garder l'image actuelle
+    $imageName = $projectData['current_image'];
+
+    // Si une nouvelle image est envoyée, la remplacer
+    if ($imageData['name'] != ''):
+        $imageName = $imageData['name'];
+
+        move_uploaded_file(
+            $imageData['tmp_name'],
+            '../public/images/' . $imageName
+        );
+    endif;
+
+    $projectData['image'] = $imageName;
+
+    ProjectsModel\updateOneById(
+        $connexion,
+        $id,
+        $projectData
+    );
+
+    header('location: ' . PUBLIC_BASE_URL);
+}
+
+// Afficher le formulaire de modification d'un projet
+function editFormAction(PDO $connexion, int $id)
+{
+    include_once '../app/models/projectsModel.php';
+
+    $project = ProjectsModel\findOneById($connexion, $id);
+
+    global $content, $title, $showHero;
+
+    $title = "Modifier un projet";
+    $showHero = false;
+
+    ob_start();
+
+    include '../app/views/projects/editForm.php';
+
+    $content = ob_get_clean();
+}

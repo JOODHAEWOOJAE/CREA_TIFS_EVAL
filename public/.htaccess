@@ -24,6 +24,16 @@ RewriteRule ^projects\/add\/form\.html$ ?projects=add-form [L]
 # URL: ?projects=insert
 RewriteRule ^projects\/add\/insert\.html$ ?projects=insert [L]
 
+# ROUTE PROJECTS.EDITFORM
+# PATTERN: /projects/id/slug/edit/form.html
+# URL: ?projects=edit-form&id=x
+RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])?\/edit\/form\.html$ ?projects=edit-form&id=$1 [L]
+
+# ROUTE PROJECTS.UPDATE
+# PATTERN: /projects/id/slug/edit/update.html
+# URL: ?projects=update&id=x
+RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])?\/edit\/update\.html$ ?projects=update&id=$1 [L]
+
 # ROUTE PROJECTS.SHOW
 # PATTERN: /projects/id/slug.html
 # URL: ?projects=show&id=x

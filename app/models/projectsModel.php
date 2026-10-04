@@ -59,3 +59,30 @@ function insertOne(PDO $connexion, array $projectData): bool
 
     return $rs->execute();
 }
+
+// Modifier un projet
+function updateOneById(
+    PDO $connexion,
+    int $id,
+    array $projectData
+): bool
+{
+    $sql = "UPDATE projets
+            SET titre = :titre,
+                resume = :resume,
+                texte = :texte,
+                image = :image,
+                creatif = :creatif
+            WHERE id = :id;";
+
+    $rs = $connexion->prepare($sql);
+
+    $rs->bindValue(':titre', $projectData['title'], PDO::PARAM_STR);
+    $rs->bindValue(':resume', $projectData['resume'], PDO::PARAM_STR);
+    $rs->bindValue(':texte', $projectData['text'], PDO::PARAM_STR);
+    $rs->bindValue(':image', $projectData['image'], PDO::PARAM_STR);
+    $rs->bindValue(':creatif', $projectData['category_id'], PDO::PARAM_INT);
+    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+
+    return $rs->execute();
+}

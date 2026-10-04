@@ -2,6 +2,11 @@
 
 /** @var array $project */
 
+    $editUrl = 'projects/' .
+    $project['id'] . '/' .
+    \Core\Helpers\slugify($project['titre']) .
+    '/edit/form.html';
+
 ?>
 
 <h1><?php echo $project['titre']; ?></h1>
@@ -20,7 +25,10 @@
 
 <div class="mb-4">
 
-    <a href="#" class="ct-btn ct-btn--primary">
+    <a
+        href="<?php echo $editUrl; ?>"
+        class="ct-btn ct-btn--primary"
+    >
         Éditer le projet
     </a>
 
