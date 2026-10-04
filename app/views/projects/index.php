@@ -6,13 +6,20 @@
 
 <?php foreach ($projects as $project): ?>
 
+    <?php
+    $url = 'projects/' .
+        $project['id'] . '/' .
+        \Core\Helpers\slugify($project['titre']) .
+        '.html';
+    ?>
+
     <article class="ct-card">
 
         <div class="row">
 
             <div class="col-md-4">
 
-                <a href="#">
+                <a href="<?php echo $url; ?>">
 
                     <img
                         class="img-fluid mb-3 mb-md-0"
@@ -29,7 +36,7 @@
 
                 <h3>
 
-                    <a href="#">
+                    <a href="<?php echo $url; ?>">
                         <?php echo $project['titre']; ?>
                     </a>
 
@@ -55,12 +62,12 @@
                 </p>
 
 
-                <a
-                    class="ct-btn ct-btn--primary ct-btn--sm"
-                    href="#"
-                >
+            <a
+                class="ct-btn ct-btn--primary ct-btn--sm"
+                href="<?php echo $url; ?>"
+            >
                     Voir le projet
-                </a>
+            </a>
 
             </div>
 

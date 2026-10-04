@@ -9,7 +9,9 @@
 
     <?php include '../app/views/templates/partials/_nav.php'; ?>
 
-    <?php include '../app/views/templates/partials/_hero.php'; ?>
+    <?php if ($showHero): ?>
+        <?php include '../app/views/templates/partials/_hero.php'; ?>
+    <?php endif; ?>
 
     <?php include '../app/views/templates/partials/_main.php'; ?>
 

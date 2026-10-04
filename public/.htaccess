@@ -1,0 +1,24 @@
+RewriteEngine on
+
+# --------------------------------------------
+# Fichiers ou dossiers réels (css, js, images, etc.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# --------------------------------------------
+# RÈGLES DE RÉ-ÉCRITURE
+
+# ROUTE PROJECTS.INDEX
+# PATTERN: /projects
+# URL: ?projects=index
+RewriteRule ^projects$ ?projects=index [L]
+
+# ROUTE PROJECTS.SHOW
+# PATTERN: /projects/id/slug.html
+# URL: ?projects=show&id=x
+RewriteRule ^projects\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])?\.html$ ?projects=show&id=$1 [L]
+
+# --------------------------------------------
+# FALLBACK
+RewriteRule ^ index.php [L]

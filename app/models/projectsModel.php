@@ -4,6 +4,7 @@ namespace App\Models\ProjectsModel;
 
 use \PDO;
 
+// Récupérer les 10 derniers projets
 function findAll(PDO $connexion, int $limit = 10): array
 {
     $sql = "SELECT projets.*, creatifs.pseudo
@@ -20,4 +21,22 @@ function findAll(PDO $connexion, int $limit = 10): array
     $rs->execute();
 
     return $rs->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Récupérer un projet par son id
+function findOneById(PDO $connexion, int $id): array
+{
+    $sql = "SELECT projets.*, creatifs.pseudo
+            FROM projets
+            JOIN creatifs
+            ON projets.creatif = creatifs.id
+            WHERE projets.id = :id;";
+
+    $rs = $connexion->prepare($sql);
+
+    $rs->bindValue(':id', $id, PDO::PARAM_INT);
+
+    $rs->execute();
+
+    return $rs->fetch(PDO::FETCH_ASSOC);
 }
